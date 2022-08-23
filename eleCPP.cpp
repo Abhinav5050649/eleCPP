@@ -52,7 +52,7 @@ void elevator()
 	{
 		char ch; int floor;
 		cout << "Press U to go Up and D to go Down: "; cin >> ch;
-		cout << "Press Floor to go to: "; cin >> floor;
+		cout << "Press Floor to go to(0 being the lowest, " + upperRange + " being the highest): "; cin >> floor;
 		tallyOfFloors.push_back({ch, floor});  
 	}
 
@@ -78,5 +78,14 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 	}
 
 	//Initially lift will start from the ground floor in current case
-	
+	//And, lift will go up by default initially as is expected from a lift
+
+	/*
+	There will be three main cases:
+	a) upWards is empty --> in this case lift will go up to the topmost floor and then descend again as it will ensure that maximum people
+	will be able to go down at once
+	b) downWards is empty --> in this case, lift will go up like usual, stopping at floors where people are present
+	c) both the queues are not empty --> in this case, lift will first go up, carrying people up and then go down accordingly
+	d) if both queues empty, then lift will stay at ground floor
+	*/
 }
