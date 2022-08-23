@@ -88,4 +88,24 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 	c) both the queues are not empty --> in this case, lift will first go up, carrying people up and then go down accordingly
 	d) if both queues empty, then lift will stay at ground floor
 	*/
+
+	if (upWards.empty() && downWards.empty())	return;	//case (d)
+	else
+	{
+		if (upWards.empty() && (!downWards.empty()))
+		{
+			//case (a)
+			
+		}
+		else if (downWards.empty() && (!upWards.empty()))
+		{
+			//case (b)
+
+		}
+		else if ((!downWards.empty()) && (!upWards.empty()))
+		{
+			//case (c)
+
+		}
+	}
 }
