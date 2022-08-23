@@ -2,6 +2,7 @@
 using namespace std;
 
 void elevator();
+void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<char, int>> &tallyOfFloors);
 
 int main()
 {
@@ -58,4 +59,9 @@ void elevator()
 	solve(lowerRange, upperRange, numberOfOperations, tallyOfFloors);
 
 	tallyOfFloors.clear();
+}
+
+void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<char, int>> &tallyOfFloors)
+{
+	
 }
