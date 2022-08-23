@@ -81,7 +81,7 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 	//And, lift will go up by default initially as is expected from a lift
 
 	/*
-	There will be three main cases:
+	There will be four main cases:
 	a) upWards is empty --> in this case lift will go up to the topmost floor and then descend again as it will ensure that maximum people
 	will be able to go down at once
 	b) downWards is empty --> in this case, lift will go up like usual, stopping at floors where people are present
