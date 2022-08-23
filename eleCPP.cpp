@@ -63,5 +63,20 @@ void elevator()
 
 void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<char, int>> &tallyOfFloors)
 {
+	queue<pair<char,int>> upWards, downWards;
+
+	for (auto it: tallyOfFloors)
+	{
+		if (it.first == 'U' || it.first == 'u')
+		{
+			upWards.push(it);
+		}
+		else
+		{
+			downWards.push(it);
+		}
+	}
+
+	//Initially lift will start from the ground floor in current case
 	
 }
