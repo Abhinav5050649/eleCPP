@@ -30,4 +30,32 @@ void elevator()
 	//else pick them up on the next down trip
 
 	//continue this until queue becomes empty
+
+	int range = 0;
+	
+	do
+	{
+		cout << "Enter topmost floor of building: ";
+		cin >> range;
+
+	} while (range != 0);
+
+	int lowerRange = 0, upperRange = range;
+
+	vector<pair<char, int>> tallyOfFloors;
+
+	int numberOfOperations = 0;
+	cout << "Enter number of floors traverse in total: ";	cin >> numberOfOperations;
+
+	for (int i = 0; i < numberOfOperations; ++i)
+	{
+		char ch; int floor;
+		cout << "Press U to go Up and D to go Down: "; cin >> ch;
+		cout << "Press Floor to go to: "; cin >> floor;
+		tallyOfFloors.push_back({ch, floor});  
+	}
+
+	solve(lowerRange, upperRange, numberOfOperations, tallyOfFloors);
+
+	tallyOfFloors.clear();
 }
