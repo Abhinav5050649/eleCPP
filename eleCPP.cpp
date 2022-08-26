@@ -18,6 +18,20 @@ int main()
 	return 0;
 }
 
+/*
+// Problem to resolve:- Agar user upar ya niche ja raha hai
+Case 1: down ops
+	agar niche ja rahi hai lift and ek interval mein lowest floor is not gorund floor, but lets say 1, and fir 5th floor se koi 
+	bula rahe hai niche jane ke liye, then fir mujhe direct fifth vale ko preference dena padega
+
+case 2: up ops
+	vice-versa of down ops
+
+problem that I am encountering: queue mein am looking at extreme cases only. not these cases. so, we can use a vector for this
+
+Note: Do look at kunal's suggestion
+*/
+
 void elevator()
 {
 	//We will have to use a few queues, consisting of pairs of int and char
