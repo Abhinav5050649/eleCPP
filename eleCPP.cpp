@@ -29,6 +29,7 @@ case 2: up ops
 	vice-versa of down ops
 
 problem that I am encountering: queue mein am looking at extreme cases only. not these cases. so, we can use a vector for this
+resolved
 
 Note: Do look at kunal's suggestion
 */
@@ -105,25 +106,25 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 	d) if both queues empty, then lift will stay at ground floor
 	*/
 
-	if (upWards.empty() && downWards.empty())	return;	//case (d)
+	if (upWards.size() == 0 && downWards.size() == 0)	return;	//case (d)
 	else
 	{
-		if (upWards.empty() && (!downWards.empty()))
+		if (upWards.size() == 0 && downWards.size() != 0)
 		{
 			//case (a)
 			
 			printDownTrajectory(lowerRange, upperRange, upWards, downWards);
 		}
-		else if (downWards.empty() && (!upWards.empty()))
+		else if (downWards.size() == 0 && upWards.size() != 0)
 		{
 			//case (b)
 
 			printUpTrajectory(lowerRange, upperRange, upWards, downWards);
 		}
-		else if ((!downWards.empty()) && (!upWards.empty()))
+		else if ((downWards.size() != 0) && (upWards.size() != 0))
 		{
 			//case (c)
-			
+
 		}
 	}
 }
