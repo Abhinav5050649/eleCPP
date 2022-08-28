@@ -3,8 +3,9 @@ using namespace std;
 
 void elevator();
 void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<char, int>> &tallyOfFloors);
-void printDownTrajectory(int lowerRange, int UpperRange, vector<int> arrdownWards, queue<<pair<char, int>> upWards, queue<<pair<char, int>> downWards);
-void printUpTrajectory(int lowerRange, int UpperRange, vector<int> arrupWards, queue<<pair<char, int>> upWards, queue<<pair<char, int>> downWards);
+void printDownTrajectory(int lowerRange, int UpperRange,  vector<<pair<char, int>> &upWards, vector<<pair<char, int>> &downWards);
+void printUpTrajectory(int lowerRange, int UpperRange, vector<<pair<char, int>> &upWards, vector<<pair<char, int>> &downWards);
+void printFloors(vector<int> &floors);
 
 int main()
 {
@@ -78,7 +79,7 @@ void elevator()
 
 void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<char, int>> &tallyOfFloors)
 {
-	queue<pair<char,int>> upWards, downWards;
+	vector<pair<char,int>> upWards, downWards;
 
 	for (auto it: tallyOfFloors)
 	{
@@ -110,104 +111,80 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 		if (upWards.empty() && (!downWards.empty()))
 		{
 			//case (a)
-			vector<int> arrdownWards;
 			
-			printDownTrajectory(lowerRange, upperRange, arrDownWards, upWards, downWards);
+			printDownTrajectory(lowerRange, upperRange, upWards, downWards);
 		}
 		else if (downWards.empty() && (!upWards.empty()))
 		{
 			//case (b)
-			vector<int> arrupWards;
 
-			printUpTrajectory(lowerRange, upperRange, arrupWards, upWards, downWards);
+			printUpTrajectory(lowerRange, upperRange, upWards, downWards);
 		}
 		else if ((!downWards.empty()) && (!upWards.empty()))
 		{
 			//case (c)
-
+			
 		}
 	}
 }
 
-void printDownTrajectory(int lowerRange, int UpperRange, vector<int> arrdownWards, queue<<pair<char, int>> upWards, queue<<pair<char, int>> downWards)
+void printFloors(vector<int> &floors)
 {
-	do
+	for (auto it: floors)
 	{
-		while (!downWards.empty())
-		{
-			if (downWards.front().second == lowerRange)
-			{
-				arrdownWards.push_back(downWards.front().second);
-				downWards.pop();
-				break;
-			}else{
-				arrdownWards.push_back(downWards.front().second);
-				downWards.pop();
-			}
-		}	
-
-		if (arrdownWards.size() == 0)
-		{
-			break;
-		}else{
-			sort(arrdownWards.begin(), arrdownWards.end());
-			reverse(arrdownWards.begin(), arrdownWards.end());
-
-			int check = arrdownWards[0];
-			cout << check << " ";
-			for (int i = 0, n = arrdownWards.length(); i < n; ++i)
-			{
-				if (check != arrdownWards[i])
-				{
-					check = arrdownWards[i];
-					cout << arrdownWards[i] <<  "\n";
-				}
-			}
-
-			arrdownWards.clear();
-		}
-		
+		cout << it << "\n";
 	}
-	while (!downWards.empty());
+	floors.clear();
 }
 
-void printUpTrajectory(int lowerRange, int UpperRange, vector<int> arrupWards, queue<<pair<char, int>> upWards, queue<<pair<char, int>> downWards)
+void printDownTrajectory(int lowerRange, int UpperRange, vector<<pair<char, int>> &upWards, vector<<pair<char, int>> &downWards)
 {
-	do
+		//change this implementation --> done
+		//Logic: Same as with queue implementation, but checks difference between adjacent floors and works accordingly
+	vector<int> floors;
+	for (int i = 0, lengthOfdownWards = downWards.size(), mid = ((upperRange - lowerRange)/2); i < lengthOfdownWards; ++i)
 	{
-		while (!upWards.empty())
+		floors.push_back(downWards[i]);
+		if (i == n - 1)
 		{
-			if (upWards.front().second == higherRange)
-			{
-				arrupWards.push_back(upWards.front().second);
-				upWards.pop();
-				break;
-			}else{
-				arrupWards.push_back(upWards.front().second);
-				upWards.pop();
-			}
-		}	
-
-		if (arrupWards.size() == 0)
-		{
+			
+			sort(floors.begin(), floors.end());
+			reverse(floors.begin(), floors.end());
+			printFloors(floors);
 			break;
-		}else{
-			sort(arrupWards.begin(), arrupWards.end());
-
-			int check = arrupWards[0];
-			cout << check << " ";
-			for (int i = 0, n = arrupWards.length(); i < n; ++i)
-			{
-				if (check != arrupWards[i])
-				{
-					check = arrupWards[i];
-					cout << arrupWards[i] <<  "\n";
-				}
-			}
-
-			arrupWards.clear();
 		}
-		
+		else if (abs(downWards[i] - downWards[i + 1]) >= mid)
+		{
+			sort(floors.begin(), floors.end());
+			reverse(floors.begin(), floors.end());
+			printFloors(floors);
+		}
+		downWards.clear();
 	}
-	while (!upWards.empty());
+	return;
+}
+
+void printUpTrajectory(int lowerRange, int UpperRange, vector<<pair<char, int>> &upWards, vector<<pair<char, int>> &downWards)
+{
+	vector<int> floors;
+	for (int i = 0, lengthOfdownWards = upWards.size(), mid = ((upperRange - lowerRange)/2); i < lengthOfupWards; ++i)
+	{
+		floors.push_back(upWards[i]);
+		if (i == n - 1)
+		{
+			
+			sort(floors.begin(), floors.end());
+			reverse(floors.begin(), floors.end());
+			printFloors(floors);
+			break;
+		}
+		else if (abs(upWards[i] - upWards[i + 1]) >= mid)
+		{
+			sort(floors.begin(), floors.end());
+			reverse(floors.begin(), floors.end());
+			printFloors(floors);
+		}
+	}
+	upWards.clear();
+	return;
 }
