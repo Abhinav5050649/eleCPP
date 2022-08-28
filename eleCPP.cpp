@@ -124,7 +124,7 @@ void solve(int lowerRange, int upperRange, int numberOfOperations, vector<pair<c
 		else if ((downWards.size() != 0) && (upWards.size() != 0))
 		{
 			//case (c)
-
+			//To work on this portion
 		}
 	}
 }
