@@ -1,2 +1,5 @@
 restaurant_1.c
 res_1.exe
+*.c
+*.exe
+.vscode
